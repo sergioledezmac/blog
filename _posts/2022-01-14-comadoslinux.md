@@ -11,13 +11,13 @@ Buscar un paquete instalado en el OS (SUSE)
  zypper search unzip
  ```
  
- Desccomprimir un archivo tar (.tgz)
+ Descomprimir un archivo tar (.tgz)
  ```tsql
  tar -xvf
   ```
   
   
-  
+  Ver librerias instaladas
    ```tsql
- 
+ ldconfig -p
   ```
