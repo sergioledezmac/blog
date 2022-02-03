@@ -61,7 +61,7 @@ no crontab for geekflare
 
 
 Si el usuario ya ha agregado algunos de los trabajos, se mostrará de la siguiente manera.
-
+```tsql
 [geekflare@localhost ~]# crontab -l
 # Edit this file to introduce tasks to be run by cron.
 #
@@ -88,20 +88,20 @@ Si el usuario ya ha agregado algunos de los trabajos, se mostrará de la siguien
 0 */1 * * * /home/account/scripts/updateAccountStatuses.sh
 0 */1 * * * /home/account/scripts/reActivateAccountStatus.sh
 [geekflare@localhost ~]#
+```
 
 
-
-List Cron para un usuario particular
+## List Cron para un usuario particular
 Para enumerar los trabajos programados de otro usuario, use la opción como -u (Usuario) y -l (Lista).
-
+```tsql
 crontab -u another_username -l
-
+```
 Ejemplo: crontab -u geekflare -l
 
-Agregar / modificar entradas de Crontab
+## Agregar / modificar entradas de Crontab
 Para editar la entrada crontab, podemos usar -e opción como se muestra a continuación.
-
+```tsql
 crontab -e
-
+```
 El comando anterior abrirá los editores vi donde especificará los detalles del trabajo y guardará el archivo.
-Una vez guardado, puede verificar si cron está configurado o no con crontab -l.
+Una vez guardado, puede verificar si cron está configurado o no con ```tsqlcrontab -l ``` .
