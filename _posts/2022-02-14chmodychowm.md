@@ -67,6 +67,7 @@ chmod -R g-w  test
 ```
 El -R es de (recursivo). Esta opción te permite cambiar permisos o propietarios de todos los archivos y subdirectorios dentro de un directorio específica.
 drwxr-x--- 2 root root   4096 Feb 14 09:39 test
+.
 
 
 
