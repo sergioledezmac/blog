@@ -1,0 +1,13 @@
+Versiones Kernel Linux https://www.suse.com/support/kb/doc/?id=000019587
+Patch Updates https://www.suse.com/products/live-patching/current-patches/
+
+Repo https://documentation.suse.com/suma/4.2/en/suse-manager/client-configuration/repositories.html
+
+https://documentation.suse.com/sles/15-SP3/html/SLES-all/cha-upgrade-online.html#sec-upgrade-online-yast
+https://documentation.suse.com/es-es/sles/15-SP2/html/SLES-all/cha-upgrade-online.html#sec-upgrade-online-zypper
+
+
+
+
+rpm -ivh  kernel-livepatch-tools-1.2-7.3.3.x86_64.rpm
+rpm -ivh  kernel-default-livepatch-devel-5.3.18-57.3.x86_64.rpm
