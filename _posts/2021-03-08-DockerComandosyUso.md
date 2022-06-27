@@ -169,9 +169,19 @@ Incluso si el src es un archivo comprimido lo descomprime en el destino.
 docker ps
 ```
 
+ Ver ultimo contenedor creado
+ ```ruby 
+docker ps -l
+```
+
+ Ver contenedores activos y inactivos
+ ```ruby 
+docker ps -a
+```
+
 Crear un contenedor
  ```ruby 
-docker ps
+docker run
 ```
 Tenemos varios argumentos que podemos utilizar
  ```ruby 
@@ -183,5 +193,45 @@ Tenemos varios argumentos que podemos utilizar
 --hostname NOMBRE PARA EL CONTENEDOR
 --memory LIMITE DE MEMORIA PARA EL CONTENEDOR
 --cpuset-cpus LIMITE DE NUMERO DE CPUS QUE PODRA USAR EL CONTENEDOR
+```
+
+Para acceder al bash de un contener usamos el siguiente comando
+ ```ruby 
+docker exec -it NOMBRECONTENEDOR bash
+```
+Ver el consumo de recursos de un contenedor
+ ```ruby 
+docker stats NOMBRECONTENEDOR
+```
+
+Renombrar un contenedor
+ ```ruby 
+docker rename NOMBREVIEJO NOMBRENUEVO
+```
+
+ Eliminar Contenedor
+ *Utilize -f para eliminar contenedor que esta en ejecucion*
+ ```ruby 
+docker rm CONTEDOR
+```
+
+ Ver los Docker logs
+ *-f permite verlos en tiempo real*
+ *-t añade timestamp al log (hora de cada log)*
+ ```ruby 
+docker logs -f -t
+```
+
+ Docker Commit
+ *Crear una imagen apartir de un contenedor*
+ *No es recomendable*
+ ```ruby
+ docker commit IDCONTENEDOR NOMBRE
+```
+
+Docker Inspect
+   *inspecciona toda la informacion de un contenedor, Redes, Volumenes etc*
+ ```ruby
+ docker inspect CONTENEDOR
 ```
 
