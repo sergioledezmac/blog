@@ -114,9 +114,22 @@ linux# docker images
 ```
 Deberiamos ver la imagen creada
 
+Si el dockerfile tiene un nombre diferente ejmeplo dockerfilepython
+
+ ```ruby 
+linux# docker build -t NOMBREIMAGE:lastest -f dockerfilepython
+```
+*IMPORTANTE: El directorio donde esta el dockerfile debe estar solo el dockerfile
+de lo contrario carga todo lo que esta en el directorio, para evitar eso podemos 
+usar el .dockerignore*
+
+
 **.DOCKERIGNORE**
 Ignora ficheros o archivos que no se utilizaran para la construccion de la imagen
 de modo que la construccion de la imagen sera mas rapida!
+
+Dentro del .dockerignore agregamos los archivos a omitir en la contruccion del
+docker image. *(Archivos que NO queremos que esten en la imagen)*
 
 ***COPY/ADD*** Se utilizan para copiar archivos o directorios al contenedor.
 
@@ -147,3 +160,28 @@ Incluso si el src es un archivo comprimido lo descomprime en el destino.
  **Hosts** Todas las tarjetar de red y el nombre de nuestro docker host se asignaran al contenedor.
  
  **None** No se asigna ninguna red al contenedor
+ 
+ 
+ ## COMANDOS MAS USADOS EN DOCKER
+ 
+ Ver contenedores activos
+ ```ruby 
+docker ps
+```
+
+Crear un contenedor
+ ```ruby 
+docker ps
+```
+Tenemos varios argumentos que podemos utilizar
+ ```ruby 
+--name NOMBRE CONTENEDOR
+-d CORRE CONTENEDOR SEGUNDO PLANO
+-p EXPONE EL PUERTO DEL CONTENEDOR
+-network INDICARLE UNA RED AL CONTENEDOR (POR DEFAUL BRIDGE)
+--ip ASIGNAR IP AL CONTENEDOR
+--hostname NOMBRE PARA EL CONTENEDOR
+--memory LIMITE DE MEMORIA PARA EL CONTENEDOR
+--cpuset-cpus LIMITE DE NUMERO DE CPUS QUE PODRA USAR EL CONTENEDOR
+```
+
