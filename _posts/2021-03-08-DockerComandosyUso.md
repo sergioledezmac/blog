@@ -30,14 +30,113 @@ Existen 3 tipos
 ## Que son las imagenes docker?
 Es un paquete que tiene la informacion necesaria para que una aplicacion se pueda ejecutar
   -Una imagen esta compuesta por capas **FROM, RUN, CMD** las imagenes son solo de Lectura y no se pueden modificar!
-  - Podemos crear imagenes utilizando un fichero de texto llamdo **Dockerfile**
+  - Podemos crear imagenes utilizando un fichero de texto llamado **Dockerfile** (Algo asi como una receta)
      Ejemplo        
-          ```tsql
-          FROM Centos:7
-          RUN yum -y install httpd
-          CMD ["apachectl","-DFOREGROUND"]
-          ```
           
+          FROM Centos:7
+          
+          RUN yum -y install httpd
+          
+          CMD ["apachectl","-DFOREGROUND"]
+          
+El **DockerFile** tiene varias capas
+
+***FROM*** 
+Establece la imagen base ```FROM <image>[:<tag>][AS<name>]```
+Puede aparecer varias veces dentro del dockerfile para crear
+multiples imagenes o etapas de copilacion.
+Se puede asignar un nombre a la etapa de copilacion con **AS**
+los **TAGS** son opcionales, si no se indica se toma por defecto la ultima
+version de la imagen.
+
+***RUN*** Se utiliza para correr comandos ``<command>`` 
+Utiliza *Shell* por defecto ``/bin/sh -c`` o ``cmd /S /C`` en Windows
+Los comandos deben ser *Desatendidos* ejemplo yum **-y** install
+
+***ENTRYPOINT*** Recibe como parametro lo que ponemos en el CMD
+Permite configurar un contenedo para que sea ejecutable.
+
+``ENTRYPOINT["executable", "param1", "param2"]``
+
+
+***CMD*** Es el comando que se usa para levantar nuestra aplicacion, debe levanta en primer plano
+para mantener vivo el contenedor.
+
+``CMD["executable", "param1", "param2"]``
+
+*Solo puede haber un CMD en un dockerfile*
+
+
+Ejemplo
+```tsql
+syntax=docker/dockerfile:1
+FROM node:12-alpine
+RUN apk add --no-cache python2 g++ make
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+EXPOSE 3000
+```
+**Construyendo Una Imagen**
+```tsql 
+linux# vim Dockerfile
+```
+
+Vamos a trabajar a partir de un ubunto image
+Vamos a actualizar e instalar python 3
+Copiamos el script python que queremos que ejecute.
+*#Podriamos usar el ENTRYPOINT para poder ejecutar el .py*
+```ruby                  
+FROM ubuntu:lastest
+
+RUN apt update && apt install -y python3
+
+COPY scriptpython.py /scriptpython.py
+
+#ENTRYPOINT ["python3"]
+
+#CMD ["/scriptpython.py"]
+
+CMD ["python3", "/scriptpython.py"]
+
+```
+
+```ruby 
+linux# docker build -t NOMBREIMAGE:lastest .
+
+(*el . hace referencia a la ruta donde se encuentra el dockerfile*)
+```
+
+Al ejecutar luego el comando 
+```ruby 
+linux# docker images
+```
+Deberiamos ver la imagen creada
+
+**.DOCKERIGNORE**
+Ignora ficheros o archivos que no se utilizaran para la construccion de la imagen
+de modo que la construccion de la imagen sera mas rapida!
+
+***COPY/ADD*** Se utilizan para copiar archivos o directorios al contenedor.
+
+``COPY/ADD[--chown=<user>:<group>]<src>....<dest>``
+
+La diferencia entre *COPY* y *ADD* es que con *ADD* se puede copiar un fichero desde una URL.
+Incluso si el src es un archivo comprimido lo descomprime en el destino.
+  
+  
+  
+  
+  
+  
+ Para descargar Imagenes docker vamos a la web ***Docker Hub***
+ 
+ *Docker hub testeta las imagenes subidas*
+ 
+ *Las imagenes mas utilizadas suelen estar en alpine un SSOO que ocupa entre 5 y 10 Megas*
+ 
+ Para descargar una imagen usamos el comando    ``docker pull ngix ``
           
  ## Redes
  Las redes docker es toda la configuracion de red que utilizan los contenedores para comunicarsen entre si.
